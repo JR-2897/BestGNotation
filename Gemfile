@@ -6,6 +6,9 @@ ruby '2.7.2'
 # Bundle gestion des authentifications/utilisateurs
 gem 'devise'
 
+# Bundle pundit qui permet de gérer les autorisations
+gem 'pundit'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.1'
 # Use postgresql as the database for Active Record

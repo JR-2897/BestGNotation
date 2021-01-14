@@ -10,10 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_14_140300) do
+ActiveRecord::Schema.define(version: 2021_01_14_150553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "categoryName"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.decimal "note"
+    t.datetime "datePublished"
+    t.bigint "categories_id", null: false
+    t.bigint "studios_id", null: false
+    t.bigint "platforms_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["categories_id"], name: "index_games_on_categories_id"
+    t.index ["platforms_id"], name: "index_games_on_platforms_id"
+    t.index ["studios_id"], name: "index_games_on_studios_id"
+  end
+
+  create_table "platforms", force: :cascade do |t|
+    t.string "platformName"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.decimal "noteReview"
+    t.text "description"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "studios", force: :cascade do |t|
+    t.string "nameStudio"
+    t.datetime "dateCreated"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -30,4 +73,8 @@ ActiveRecord::Schema.define(version: 2021_01_14_140300) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "games", "categories", column: "categories_id"
+  add_foreign_key "games", "platforms", column: "platforms_id"
+  add_foreign_key "games", "studios", column: "studios_id"
+  add_foreign_key "reviews", "users"
 end

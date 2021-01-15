@@ -5,9 +5,9 @@ class CreateGames < ActiveRecord::Migration[6.1]
       t.text :description
       t.decimal :note
       t.date :datePublished
-      t.references :categories, null: false, foreign_key: true
-      t.references :studios, null: false, foreign_key: true
-      t.references :platforms, null: false, foreign_key: true
+      t.references :category, null: false, foreign_key: true
+      t.references :studio, null: false, foreign_key: true
+      t.references :platform, null: false, foreign_key: true
       t.timestamps
     end
   end

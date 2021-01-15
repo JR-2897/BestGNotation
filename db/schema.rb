@@ -26,14 +26,14 @@ ActiveRecord::Schema.define(version: 2021_01_14_150553) do
     t.text "description"
     t.decimal "note"
     t.date "datePublished"
-    t.bigint "categories_id", null: false
-    t.bigint "studios_id", null: false
-    t.bigint "platforms_id", null: false
+    t.bigint "category_id", null: false
+    t.bigint "studio_id", null: false
+    t.bigint "platform_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["categories_id"], name: "index_games_on_categories_id"
-    t.index ["platforms_id"], name: "index_games_on_platforms_id"
-    t.index ["studios_id"], name: "index_games_on_studios_id"
+    t.index ["category_id"], name: "index_games_on_category_id"
+    t.index ["platform_id"], name: "index_games_on_platform_id"
+    t.index ["studio_id"], name: "index_games_on_studio_id"
   end
 
   create_table "platforms", force: :cascade do |t|
@@ -75,9 +75,9 @@ ActiveRecord::Schema.define(version: 2021_01_14_150553) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "games", "categories", column: "categories_id"
-  add_foreign_key "games", "platforms", column: "platforms_id"
-  add_foreign_key "games", "studios", column: "studios_id"
+  add_foreign_key "games", "categories"
+  add_foreign_key "games", "platforms"
+  add_foreign_key "games", "studios"
   add_foreign_key "reviews", "games"
   add_foreign_key "reviews", "users"
 end

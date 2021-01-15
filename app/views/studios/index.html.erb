@@ -1,0 +1,13 @@
+<h1>Studios</h1>
+<ul>
+  <% @studios.each do |studio| %>
+    <div>
+      <li>
+        <%= link_to studio.nameStudio, studio_path(studio) %>
+        <%= studio.dateCreated %>
+      </li>
+    </div>
+  <% end %>
+</ul>
+
+<%= link_to 'Nouveau studio', new_studio_path %>

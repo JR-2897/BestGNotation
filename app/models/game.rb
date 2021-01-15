@@ -1,5 +1,6 @@
 class Game < ApplicationRecord
-  belongs_to :categories
-  belongs_to :studios
-  belongs_to :platforms
+  belongs_to :category
+  belongs_to :studio
+  belongs_to :platform
+  has_many :reviews, dependent: :destroy
 end

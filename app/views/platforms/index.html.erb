@@ -1,0 +1,10 @@
+<h1>Plateformes</h1>
+<ul>
+  <% @platforms.each do |platform| %>
+    <div>
+      <li><%= link_to platform.platformName, platform_path(platform) %></li>
+    </div>
+  <% end %>
+</ul>
+
+<%= link_to 'Nouvelle platforme', new_platform_path %>

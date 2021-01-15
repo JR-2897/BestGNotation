@@ -1,0 +1,8 @@
+<h1><%= @platform.platformName %></h1>
+
+<%= link_to "Retour à la liste des platformes", platforms_path %>
+
+<% if policy(@platform).edit? %>
+  <%= link_to "Editer la platforme", edit_platform_path(@platform) %>
+  <%= link_to "Supprimer #{@platform.platformName}", platform_path(@platform), method: :delete %>
+<% end %>

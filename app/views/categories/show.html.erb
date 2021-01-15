@@ -1,0 +1,8 @@
+<h1><%= @category.categoryName %></h1>
+
+<%= link_to "Retour à la liste des catégories", categories_path %>
+
+<% if policy(@category).edit? %>
+  <%= link_to "Editer la catégorie", edit_category_path(@category) %>
+  <%= link_to "Supprimer #{@category.categoryName}", category_path(@category), method: :delete %>
+<% end %>

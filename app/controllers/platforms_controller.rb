@@ -1,5 +1,5 @@
 class PlatformsController < ApplicationController
-  before_action :set_platform, only: [:show, :edit, :update]
+  before_action :set_platform, only: [:show, :edit, :update, :destroy]
 
   def index
     @platforms = policy_scope(Platform)

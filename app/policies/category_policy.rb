@@ -1,4 +1,4 @@
-class PlatformPolicy < ApplicationPolicy
+class CategoryPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -31,5 +31,5 @@ class PlatformPolicy < ApplicationPolicy
     true
     # current_user.is_admin
   end
-
+  
 end

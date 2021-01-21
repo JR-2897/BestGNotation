@@ -1,6 +1,7 @@
 <h1><%= @game.name %> - <%= @game.platform.platformName %></h1>
 <h2><%= @game.studio.nameStudio %></h2>
 
+ <%= cl_image_tag @game.photo.key if @game.photo.attached? %>
 <p><%= @game.category.categoryName %></p>
 <p><%= @game.description %></p>
 <p><%= @game.note %></p>

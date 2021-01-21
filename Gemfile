@@ -12,6 +12,12 @@ gem 'pundit'
 # Bundle gestion formulaire
 gem 'simple_form'
 
+# Bundle de stockage de configuration dans l'environnement
+gem 'dotenv-rails'
+
+# Bundle de téléchargement d'image et vidéo vers un cloud de stockage
+gem 'cloudinary'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.1'
 # Use postgresql as the database for Active Record

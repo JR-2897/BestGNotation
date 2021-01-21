@@ -4,5 +4,8 @@ Rails.application.routes.draw do
   resources :platforms
   resources :categories
   resources :studios
-  resources :games
+  resources :games do
+    resources :reviews
+  end
+  # get 'game/:game_id/reviews/new', to: 'reviews#new_review_from_game', as: 'new_game_review'
 end

@@ -34,6 +34,7 @@ class GamesController < ApplicationController
   end
 
   def show
+    @reviews = Review.where(game: @game)
   end
 
   def edit

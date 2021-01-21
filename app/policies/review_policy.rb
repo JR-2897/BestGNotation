@@ -1,0 +1,38 @@
+class ReviewPolicy < ApplicationPolicy
+  class Scope < Scope
+    def resolve
+      scope.all
+    end
+  end
+
+  def index?
+    false
+  end
+
+  def show?
+   false
+  end
+
+  def new?
+    true
+    # current_user.is_admin
+  end
+
+  def create?
+    new?
+  end
+
+  def edit?
+    true
+    # current_user.is_admin
+  end
+
+  def update?
+    edit?
+  end
+
+  def destroy?
+    true
+    # current_user.is_admin
+  end
+end

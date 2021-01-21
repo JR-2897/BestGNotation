@@ -9,6 +9,18 @@
 <%= link_to "Retour à la liste des jeux", games_path %>
 
 <% if policy(@game).edit? %>
-  <%= link_to "Editer le jeu", edit_game_path(@game) %>
-  <%= link_to "Supprimer #{@game.name}", game_path(@game), method: :delete %>
+  <%= link_to "Modifier", edit_game_path(@game) %>
+  <%= link_to "Supprimer", game_path(@game), method: :delete %>
 <% end %>
+
+<h2>Reviews</h2>
+<%= link_to "Laissez un avis", new_game_review_path(@game) %>
+<ul>
+  <% @game.reviews.each do |review| %>
+    <li><%= review.noteReview %> - <%= review.description %>
+      <% if policy(review).edit? %>
+        <%= link_to "Modifier", edit_game_review_path(@game, review.id) %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

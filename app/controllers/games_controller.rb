@@ -7,26 +7,22 @@ class GamesController < ApplicationController
 
   def new
     @game = Game.new
+    @categories = Category.all
+    @studios = Studio.all
+    @platforms = Platform.all
+    @game.category = @categories[0]
+    @game.studio = @studios[0]
+    @game.platform = @platforms[0]
     authorize @game
   end
 
   def create
 
-    @game = Game.new(name: game_params[:name], description: game_params[:description],
-      note: game_params[:note], datePublished: game_params[:datePublished])
+    @game = Game.new
 
     authorize @game
 
-    @category = Category.where(categoryName: game_params[:category])
-    @game.category = @category[0]
-
-    @studio = Studio.where(nameStudio: game_params[:studio])
-    @game.studio = @studio[0]
-
-    @platform = Platform.where(platformName: game_params[:platform])
-    @game.platform = @platform[0]
-
-    if @game.save
+    if update_game(game_params, @game)
       redirect_to game_path(@game)
     else
       render 'new'
@@ -38,11 +34,27 @@ class GamesController < ApplicationController
   end
 
   def edit
+    @categories = Category.all
+    @studios = Studio.all
+    @platforms = Platform.all
   end
 
   def update
-    @game.update(game_params)
+    update_game(game_params, @game)
     redirect_to game_path(@game)
+  end
+
+  def update_game(game_params, game)
+
+    @category = Category.find(game_params[:category])
+
+    @studio = Studio.find(game_params[:studio])
+
+    @platform = Platform.find(game_params[:platform])
+
+    @game.update(name: game_params[:name], description: game_params[:description],
+      note: game_params[:note], datePublished: game_params[:datePublished],
+      category: @category, studio: @studio, platform: @platform, photo: game_params[:photo])
   end
 
   def destroy

@@ -3,9 +3,9 @@
   <%= f.input :description %>
   <%= f.input :note %>
   <%= f.input :datePublished %>
-  <%= f.input :category %>
-  <%= f.input :studio %>
-  <%= f.input :platform %>
+  <%= f.select :category, options_for_select(@categories.collect{|category|[category.categoryName, category.id]}, selected: game.category.id) %>
+  <%= f.select :studio, options_for_select(@studios.collect{|studio|[studio.nameStudio, studio.id]}, selected: game.studio.id) %>
+  <%= f.select :platform, options_for_select(@platforms.collect{|platform|[platform.platformName, platform.id]}, selected: game.platform.id) %>
   <%= f.input :photo, as: :file %>
   <%= f.submit %>
 <% end %>

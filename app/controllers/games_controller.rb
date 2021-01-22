@@ -33,6 +33,8 @@ class GamesController < ApplicationController
     @reviews = Review.where(game: @game)
   end
 
+  
+
   def edit
     @categories = Category.all
     @studios = Studio.all
@@ -53,8 +55,8 @@ class GamesController < ApplicationController
     @platform = Platform.find(game_params[:platform])
 
     @game.update(name: game_params[:name], description: game_params[:description],
-      note: game_params[:note], datePublished: game_params[:datePublished],
-      category: @category, studio: @studio, platform: @platform, photo: game_params[:photo])
+      datePublished: game_params[:datePublished], photo: game_params[:photo],
+      category: @category, studio: @studio, platform: @platform)
   end
 
   def destroy
@@ -70,6 +72,6 @@ class GamesController < ApplicationController
   end
 
   def game_params
-    params.require(:game).permit(:name, :description, :note, :datePublished, :category, :platform, :studio, :photo)
+    params.require(:game).permit(:name, :description, :datePublished, :category, :platform, :studio, :photo)
   end
 end

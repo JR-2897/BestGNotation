@@ -1,7 +1,6 @@
 <%= simple_form_for game do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
-  <%= f.input :note %>
   <%= f.input :datePublished %>
   <%= f.select :category, options_for_select(@categories.collect{|category|[category.categoryName, category.id]}, selected: game.category.id) %>
   <%= f.select :studio, options_for_select(@studios.collect{|studio|[studio.nameStudio, studio.id]}, selected: game.studio.id) %>

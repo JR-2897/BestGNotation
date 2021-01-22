@@ -20,6 +20,7 @@ class ReviewsController < ApplicationController
     authorize @review
     @review.user = current_user
     if @review.save
+      update_note_game(@game)
       redirect_to game_path(@game)
     else
       render 'new'
@@ -34,6 +35,7 @@ class ReviewsController < ApplicationController
 
   def update
     @review.update(review_params)
+    update_note_game(@game)
     redirect_to game_path(@game)
   end
 
@@ -52,5 +54,11 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:noteReview, :description)
+  end
+
+  def update_note_game(game)
+    @notes = Array.new
+    @game.reviews.each {|r| @notes.push(r.noteReview)}
+    @game.update(note: CalculService.instance().CalculateDecimalAverage(@notes))
   end
 end

@@ -1,11 +1,24 @@
 <h1><%= @game.name %> - <%= @game.platform.platformName %></h1>
 <h2><%= @game.studio.nameStudio %></h2>
+<div>
+<div style="display:inline-block;"> 
+<%= cl_image_tag @game.photo.key, :width => 400, :height => 600 if @game.photo.attached? %>
+</div>
 
- <%= cl_image_tag @game.photo.key if @game.photo.attached? %>
-<p><%= @game.category.categoryName %></p>
-<p><%= @game.description %></p>
-<p><%= @game.note %></p>
-<p><%= @game.datePublished %></p>
+<div style="display:inline-block;vertical-align:top;">
+<p><b>Type : </b><%= @game.category.categoryName %></p>
+
+<p><b>Description :</b><br/>
+   <%= @game.description %></p>
+
+<p><b>Note du jeu : </b>
+<% if @game.note?  %>
+  <%= @game.note %>
+<% else %>
+  Pas encore noté.
+<% end %>
+</p>
+<p><b>Date de publication : </b> <%= @game.datePublished %></p>
 
 <%= link_to "Retour à la liste des jeux", games_path %>
 
@@ -25,3 +38,5 @@
     </li>
   <% end %>
 </ul>
+</div>
+</div>

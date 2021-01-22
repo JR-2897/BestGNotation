@@ -1,12 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @game = Game.find(params[:game_id])
-    @reviews = policy_scope(Review).where(game: @game)
-    authorize @reviews
-  end
-
   def new
     @game = Game.find(params[:game_id])
     @review = Review.new
@@ -27,9 +21,6 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def edit
   end
 
@@ -41,7 +32,7 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy
-    redirect_to game_path(@game)
+    redirect_to request.referrer
   end
 
   private

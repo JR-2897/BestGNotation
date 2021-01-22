@@ -3,6 +3,7 @@ class PlatformsController < ApplicationController
 
   def index
     @platforms = policy_scope(Platform)
+    authorize @platforms
   end
 
   def new

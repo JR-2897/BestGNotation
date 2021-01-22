@@ -5,17 +5,8 @@ class ReviewPolicy < ApplicationPolicy
     end
   end
 
-  def index?
-    false
-  end
-
-  def show?
-   false
-  end
-
   def new?
     true
-    # current_user.is_admin
   end
 
   def create?
@@ -23,8 +14,7 @@ class ReviewPolicy < ApplicationPolicy
   end
 
   def edit?
-    true
-    # current_user.is_admin
+    user.id == record.user.id
   end
 
   def update?
@@ -32,7 +22,6 @@ class ReviewPolicy < ApplicationPolicy
   end
 
   def destroy?
-    true
-    # current_user.is_admin
+    user.id == record.user.id
   end
 end

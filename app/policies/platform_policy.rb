@@ -5,13 +5,16 @@ class PlatformPolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    user.is_admin
+  end
+
   def show?
-   true
+    user.is_admin
   end
 
   def new?
-    true
-    # current_user.is_admin
+    user.is_admin
   end
 
   def create?
@@ -19,8 +22,7 @@ class PlatformPolicy < ApplicationPolicy
   end
 
   def edit?
-    true
-    # current_user.is_admin
+    user.is_admin
   end
 
   def update?
@@ -28,8 +30,7 @@ class PlatformPolicy < ApplicationPolicy
   end
 
   def destroy?
-    true
-    # current_user.is_admin
+    user.is_admin
   end
 
 end

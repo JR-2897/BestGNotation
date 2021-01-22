@@ -3,6 +3,7 @@ class GamesController < ApplicationController
 
   def index
     @games = policy_scope(Game)
+    authorize @games
   end
 
   def new
@@ -17,9 +18,7 @@ class GamesController < ApplicationController
   end
 
   def create
-
     @game = Game.new
-
     authorize @game
 
     if update_game(game_params, @game)

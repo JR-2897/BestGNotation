@@ -3,6 +3,7 @@ class StudiosController < ApplicationController
 
   def index
     @studios = policy_scope(Studio)
+    authorize @studios
   end
 
   def new

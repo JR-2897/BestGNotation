@@ -5,13 +5,15 @@ class GamePolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    true
+  end
     def show?
      true
     end
 
     def new?
-      true
-      # current_user.is_admin
+      user.is_admin
     end
 
     def create?
@@ -19,8 +21,7 @@ class GamePolicy < ApplicationPolicy
     end
 
     def edit?
-      true
-      # current_user.is_admin
+      user.is_admin
     end
 
     def update?
@@ -28,8 +29,7 @@ class GamePolicy < ApplicationPolicy
     end
 
     def destroy?
-      true
-      # current_user.is_admin
+      user.is_admin
     end
 
 end

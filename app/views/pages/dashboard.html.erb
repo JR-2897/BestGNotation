@@ -1,0 +1,17 @@
+<h1>Bienvenue <%= @user.last_name.capitalize + " " + @user.first_name %> sur ton dashboard</h1>
+
+<p>Votre email : <%= @user.email %></p>
+<p>Administrateur ? <%= @user.is_admin %></p>
+
+<ul>
+  <% @reviews.each do |review| %>
+    <div>
+      <li>
+        <%= link_to review.game.name + " - " + review.game.platform.platformName,
+         game_path(review.game) %> : <%= review.description %> - <%= review.noteReview %>
+         <%= link_to 'Modifier', edit_game_review_path(review.game, review.id) %>
+         <%= link_to 'Supprimer', game_review_path(review.game, review.id), method: :delete%>
+      </li>
+    </div>
+  <% end %>
+</ul>

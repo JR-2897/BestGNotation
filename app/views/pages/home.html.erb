@@ -1,0 +1,9 @@
+<h1>Bienvenue sur BestGNotation</h1>
+
+<ul>
+  <% @games.each do |game| %>
+    <div>
+      <li><%= link_to game.name, game_path(game) %></li>
+    </div>
+  <% end %>
+</ul>

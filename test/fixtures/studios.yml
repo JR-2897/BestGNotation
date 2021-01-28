@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  nameStudio: MyString
-  dateCreated: 2021-01-14 16:04:13
+  nameStudio: "Tito"
+  dateCreated: "2015-01-15"
 
 two:
-  nameStudio: MyString
-  dateCreated: 2021-01-14 16:04:13
+  nameStudio: "Iros"
+  dateCreated: "2000-06-25"

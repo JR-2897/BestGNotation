@@ -1,4 +1,5 @@
 <h1>Bienvenue <%= @user.last_name.capitalize + " " + @user.first_name %> sur ton dashboard</h1>
+<h2><%=@user.status if @user.status != nil %></h2>
 
 <p>Votre email : <%= @user.email %></p>
 <p>Administrateur ? <%= @user.is_admin %></p>

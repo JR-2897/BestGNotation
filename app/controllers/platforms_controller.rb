@@ -1,5 +1,6 @@
 class PlatformsController < ApplicationController
   before_action :set_platform, only: [:show, :edit, :update, :destroy]
+  before_action :check_for_platforms, only: [:destroy]
 
   def index
     @platforms = policy_scope(Platform)
@@ -46,5 +47,15 @@ class PlatformsController < ApplicationController
 
   def platform_params
     params.require(:platform).permit(:platformName)
+  end
+
+  def check_for_platforms
+    @platform = Platform.find(params[:id])
+    @games = Game.where(studio: @platform)
+    @games_count = @games.count
+    if @games_count != 0
+      flash[:alert] = "Il existe au moins un jeu avec cette plateforme."
+      redirect_to request.referrer
+    end
   end
 end

@@ -1,5 +1,6 @@
 class StudiosController < ApplicationController
   before_action :set_studio, only: [:show, :edit, :update, :destroy]
+  before_action :check_for_studios, only: [:destroy]
 
   def index
     @studios = policy_scope(Studio)
@@ -46,5 +47,15 @@ class StudiosController < ApplicationController
 
   def studio_params
     params.require(:studio).permit(:nameStudio, :dateCreated)
+  end
+
+  def check_for_studios
+    @studio = Studio.find(params[:id])
+    @games = Game.where(studio: @studio)
+    @games_count = @games.count
+    if @games_count != 0
+      flash[:alert] = "Il existe au moins un jeu avec ce studio."
+      redirect_to request.referrer
+    end
   end
 end

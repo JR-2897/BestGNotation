@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_for_categories, only: [:destroy] 
   def index
     @categories = policy_scope(Category)
     authorize @categories
@@ -33,8 +33,8 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category.destroy
-    redirect_to categories_path
+      @category.destroy
+      redirect_to categories_path
   end
 
   private
@@ -46,5 +46,15 @@ class CategoriesController < ApplicationController
 
   def category_params
     params.require(:category).permit(:categoryName)
+  end
+
+  def check_for_categories
+    @category = Category.find(params[:id])
+    @games = Game.where(category: @category)
+    @games_count = @games.count
+    if @games_count != 0
+      flash[:alert] = "Il existe au moins un jeu avec cette catégorie."
+      redirect_to request.referrer
+    end
   end
 end

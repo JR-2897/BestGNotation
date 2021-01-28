@@ -1,5 +1,5 @@
 <%= simple_form_for [@game, @review] do |f| %>
-  <%= f.input :noteReview %>
+  <%= f.input :noteReview, label: 'Note (sur 20)' %>
   <%= f.input :description %>
   <%= f.submit %>
 <% end %>

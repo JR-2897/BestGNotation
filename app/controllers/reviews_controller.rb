@@ -12,12 +12,16 @@ class ReviewsController < ApplicationController
     @game = Game.find(params[:game_id])
     @review.game = @game
     authorize @review
-    @review.user = current_user
-    if @review.save
-      update_note_game(@game)
-      redirect_to game_path(@game)
+    if note_validation(review_params[:noteReview].to_f)
+      @review.user = current_user
+      if @review.save
+        update_note_game(@game)
+        redirect_to game_path(@game)
+      else
+        render 'new'
+      end
     else
-      render 'new'
+      redirect_to request.referrer
     end
   end
 
@@ -25,9 +29,13 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    @review.update(review_params)
-    update_note_game(@game)
-    redirect_to game_path(@game)
+    if note_validation(review_params[:noteReview].to_f)
+      @review.update(review_params)
+      update_note_game(@game)
+      redirect_to game_path(@game)
+    else
+      redirect_to request.referrer
+  end
   end
 
   def destroy
@@ -52,4 +60,12 @@ class ReviewsController < ApplicationController
     @game.reviews.each {|r| @notes.push(r.noteReview)}
     @game.update(note: CalculService.instance().CalculateDecimalAverage(@notes))
   end
+
+  def note_validation(note)
+    if note <= -0.1 || note >=20.1
+      flash[:alert] = "La note saisi n'est pas comprise entre 0.0 et 20.0. Valeur saisie: " + note.to_s
+      return false
+    end
+    return true
+  end 
 end

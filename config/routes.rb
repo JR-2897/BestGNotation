@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   resources :games do
     resources :reviews
   end
+
+  require "sidekiq/web"
+  mount Sidekiq::Web => '/sidekiq'
 end

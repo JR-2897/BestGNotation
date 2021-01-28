@@ -18,6 +18,12 @@ gem 'dotenv-rails'
 # Bundle de téléchargement d'image et vidéo vers un cloud de stockage
 gem 'cloudinary'
 
+# Bundle qui permet d'avoir des tâches ou des jobs en arrière plan
+gem 'sidekiq'
+
+# Bundle qui permet d'avoir les messages d'erreur des jobs tournant sur sidekiq
+gem 'sidekiq-failures'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.1'
 # Use postgresql as the database for Active Record

@@ -23,9 +23,9 @@ studios = Studio.create([{nameStudio: 'Bethesda Game Studios', dateCreated: '200
 users = User.create([{first_name: 'Admin', last_name: 'Admin', email: 'admin@gmail.com',is_admin: true,
                          password: 'adminadmin', password_confirmation: 'adminadmin'}, # mdp: adminadmin
                         {first_name: 'Toto', last_name: 'toto', email: 'toto@toto.com',is_admin: false,
-                         password: '000000', password_confirmation: '000000'}, # mdp: 000000
+                         password: '000000', password_confirmation: '000000', status: "Novice"}, # mdp: 000000
                         {first_name: 'Test', last_name: 'test', email: 'test@test.com',is_admin: false,
-                         password: '000000', password_confirmation: '000000'}])# mdp: 000000
+                         password: '000000', password_confirmation: '000000', status: "Novice"}])# mdp: 000000
 
 games = Game.create([{name: 'The Elder Scrolls V: Skyrim', description: 'Sauver le monde du dragon Alduin le devoreur de monde.', note: 20.0,
                         datePublished: '2021-01-10', category: categories[0], studio: studios[0], platform: platforms[0] },

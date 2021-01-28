@@ -54,8 +54,8 @@ class GamesController < ApplicationController
     @platform = Platform.find(game_params[:platform])
 
     @game.update(name: game_params[:name], description: game_params[:description],
-      datePublished: game_params[:datePublished], photo: game_params[:photo],
-      category: @category, studio: @studio, platform: @platform)
+      datePublished: Date.new(game_params[:'datePublished(1i)'].to_i,game_params[:'datePublished(2i)'].to_i, game_params[:'datePublished(3i)'].to_i),
+       photo: game_params[:photo], category: @category, studio: @studio, platform: @platform)
   end
 
   def destroy

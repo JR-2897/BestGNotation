@@ -1,3 +1,21 @@
 Membre du groupe :
-  - VILLIERS Pierre
-  - RAGUENEAU Jean
+  - VILLIERS Pierre (PVI)
+  - RAGUENEAU Jean (JRG)
+
+Responsabilités effectives :
+  - Design du diagramme UML : PVI
+  - Création des models : JRG
+  - Mis en place systéme authentification : PVI
+  - Création du CRUD : JRG + PVI
+  - Construction de la seed : PVI + JRG
+  - Paramétrages utilisateur : PVI
+  - Design des vues : JRG + PVI
+  - Autorisation : PVI
+  - Configuration et mise en place Cloudinary : PVI
+  - Configuration de la base de donnée : PVI + JRG
+  - Controller des pages : JRG
+  - Barre de recherche (design + fonctionnement) : JRG
+  - Déploiement sur Heroku : PVI
+  - Création service calcul de la moyenne pour la note du jeu : PVI
+  - Création d'un job + intégration sidekiq : PVI
+  - Création d'un test système : JRG
